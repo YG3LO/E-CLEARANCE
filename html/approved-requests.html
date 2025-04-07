@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approved Requests</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="pending_request.html">Pending Requests</a></li>
+                <li><a href="announcement.html">Announcement</a></li>
+                <li><a href="denied-requests.html">Denied Requests</a></li>
+                <li><a href="approved-requests.html" class="active">Approved Requests</a></li>
+                <li><a href="add-requirements.html">Add Requirements</a></li>
+                <li><a href="student-records.html">Student Records</a></li>
+                <li><a href="statistical-report.html">Statistical Report</a></li>
+                <li><a href="manage-accounts.html">Manage Accounts</a></li>
+                <li><a href="change-password.html">Change Password</a></li>
+                <li><a href="../index.html" class="logout">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Approved Requests</h1>
+            </header>
+
+            <!-- Status Cards -->
+            <div class="status-cards">
+                <div class="card pending">Pending: <span>9</span></div>
+                <div class="card denied">Denied: <span>2</span></div>
+                <div class="card cleared approved">Approved: <span>5</span></div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-container">
+                <input type="text" placeholder="Search here..." class="search-box">
+                <button class="search-btn">Search</button>
+            </div>
+
+            <!-- Approved Requests Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Student ID</th>
+                        <th>Complete Name</th>
+                        <th>Course</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>20220089</td>
+                        <td>Santos, John</td>
+                        <td>BSIT</td>
+                        <td>December 15, 2022</td>
+                        <td><span class="status-badge approved-badge">✅ Approved</span></td>
+                        <td><button class="view-btn">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>20220145</td>
+                        <td>Gomez, Carla</td>
+                        <td>BSA</td>
+                        <td>December 16, 2022</td>
+                        <td><span class="status-badge approved-badge">✅ Approved</span></td>
+                        <td><button class="view-btn">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script src="../script.js"></script> <!-- Link to external JS -->
+</body>
+</html>

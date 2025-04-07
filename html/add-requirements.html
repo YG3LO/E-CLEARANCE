@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Requirements</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Link to CSS -->
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="pending_request.html">Pending Requests</a></li>
+                <li><a href="announcement.html">Announcement</a></li>
+                <li><a href="denied-requests.html">Denied Requests</a></li>
+                <li><a href="approved-requests.html">Approved Requests</a></li>
+                <li><a href="add-requirements.html" class="active">Add Requirements</a></li>
+                <li><a href="student-records.html">Student Records</a></li>
+                <li><a href="statistical-report.html">Statistical Report</a></li>
+                <li><a href="manage-accounts.html">Manage Accounts</a></li>
+                <li><a href="change-password.html">Change Password</a></li>
+                <li><a href="../index.html" class="logout">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1>Add Requirements</h1>
+            </header>
+
+            <!-- Success Message -->
+            <div class="success-message">
+                ✅ Successful! Record Submitted.
+            </div>
+
+            <!-- Form for Adding Requirements -->
+            <div class="form-container">
+                <form id="requirement-form">
+                    <!-- Requirement Name -->
+                    <label for="requirement-name">Requirement Name <span class="required">*</span></label>
+                    <input type="text" id="requirement-name" placeholder="Enter Requirement Name" required>
+
+                    <!-- Select Specific Student or All -->
+                    <label for="student-select">Apply Requirement To:</label>
+                    <select id="student-select">
+                        <option value="all">All Students</option>
+                        <option value="specific">Specific Student</option>
+                    </select>
+
+                    <!-- Student ID (Initially Hidden) -->
+                    <div id="student-id-field">
+                        <label for="student-id">Student ID:</label>
+                        <input type="text" id="student-id" placeholder="Enter Student ID">
+                    </div>
+
+                    <!-- Requirement Details -->
+                    <label for="requirement-details">Requirements Details <span class="optional">(Optional)</span></label>
+                    <textarea id="requirement-details" placeholder="Write the note here..."></textarea>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Submit ➤</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Handle Student Selection
+        document.getElementById("student-select").addEventListener("change", function () {
+            let studentField = document.getElementById("student-id-field");
+            studentField.style.display = this.value === "specific" ? "block" : "none";
+        });
+
+        // Form Submission Handling
+        document.getElementById("requirement-form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Show success message
+            let successMessage = document.querySelector(".success-message");
+            successMessage.style.display = "block";
+
+            // Clear form after 2 seconds
+            setTimeout(() => {
+                successMessage.style.display = "none";
+                document.getElementById("requirement-form").reset();
+                document.getElementById("student-id-field").style.display = "none"; // Hide Student ID field after reset
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Accounts</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Link your CSS file -->
+    <style>
+        /* Styling for the popup form */
+        .modal {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal h3 {
+            margin-bottom: 15px;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .modal-buttons button {
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="pending_request.html">Pending Requests</a></li>
+                <li><a href="announcement.html">Announcement</a></li>
+                <li><a href="denied-requests.html">Denied Requests</a></li>
+                <li><a href="approved-requests.html">Approved Requests</a></li>
+                <li><a href="add-requirements.html">Add Requirements</a></li>
+                <li><a href="student-records.html">Student Records</a></li>
+                <li><a href="statistical-report.html">Statistical Report</a></li>
+                <li><a href="manage-accounts.html" class="active">Manage Accounts</a></li>
+                <li><a href="change-password.html">Change Password</a></li>
+                <li><a href="../index.html" class="logout">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="container">
+            <h2>Manage Accounts</h2>
+
+            <!-- Add Student Button -->
+            <button class="btn-add" onclick="openModal()">+ Add Student</button>
+
+            <!-- Filter and Search -->
+            <div class="filters">
+                <label for="course-filter">Filter by Course:</label>
+                <select id="course-filter">
+                    <option value="all">All</option>
+                    <option value="BSCS">BSCS</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSECE">BSECE</option>
+                </select>
+
+                <input type="text" id="search" placeholder="Search by Student Number">
+            </div>
+
+            <!-- Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student No.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-0001</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>juan@email.com</td>
+                        <td>BSCS</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="password-btn">Change Password</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2023-0002</td>
+                        <td>Maria Santos</td>
+                        <td>maria@email.com</td>
+                        <td>BSIT</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="password-btn">Change Password</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Form -->
+    <div id="studentModal" class="modal">
+        <h3>Add Student</h3>
+        <input type="text" id="student-no" placeholder="Enter Student No." required>
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            <button class="btn-submit" onclick="submitStudent()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById("studentModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("studentModal").style.display = "none";
+        }
+
+        function submitStudent() {
+            var studentNo = document.getElementById("student-no").value;
+            if (studentNo === "") {
+                alert("Please enter a Student No.");
+                return;
+            }
+
+            // Append the new student to the table
+            var table = document.querySelector("tbody");
+            var newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${studentNo}</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="password-btn">Change Password</button>
+                </td>
+            `;
+
+            // Close the modal after submission
+            closeModal();
+        }
+    </script>
+</body>
+</html>

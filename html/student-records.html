@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records</title>
+    <link rel="stylesheet" href="../style.css"> 
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="pending_request.html">Pending Requests</a></li>
+                <li><a href="announcement.html">Announcement</a></li>
+                <li><a href="denied-requests.html">Denied Requests</a></li>
+                <li><a href="approved-requests.html">Approved Requests</a></li>
+                <li><a href="add-requirements.html">Add Requirements</a></li>
+                <li><a href="student-records.html" class="active">Student Records</a></li>
+                <li><a href="statistical-report.html">Statistical Report</a></li>
+                <li><a href="manage-accounts.html">Manage Accounts</a></li>
+                <li><a href="change-password.html">Change Password</a></li>
+                <li><a href="../index.html" class="logout">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>Student Records</h1>
+            
+            <!-- Filter Dropdown -->
+            <label for="departmentFilter">Filter by Department:</label>
+            <select id="departmentFilter">
+                <option value="all">All</option>
+                <option value="library">Library</option>
+                <option value="guidance">Guidance</option>
+                <option value="osa">OSA</option>
+                <option value="registrar">Registrar</option>
+                <option value="finance">Finance</option>
+                <option value="ojt">OJT</option>
+            </select>
+
+            <!-- Student Table -->
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Violation / Missing Requirements</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTable">
+                    <!-- Dynamic content will be inserted here -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const studentData = [
+                { id: "202301", name: "Juan Dela Cruz", issue: "Library book not returned", department: "library" },
+                { id: "202302", name: "Maria Santos", issue: "Violation: Dress code", department: "osa" },
+                { id: "202303", name: "Carlos Mendoza", issue: "OJT requirement missing", department: "ojt" },
+                { id: "202304", name: "Ana Reyes", issue: "Unpaid tuition", department: "finance" }
+            ];
+
+            const tableBody = document.getElementById("studentTable");
+            const departmentFilter = document.getElementById("departmentFilter");
+
+            function renderTable(filter) {
+                tableBody.innerHTML = "";
+                studentData.forEach(student => {
+                    if (filter === "all" || student.department === filter) {
+                        const row = `<tr>
+                            <td>${student.id}</td>
+                            <td>${student.name}</td>
+                            <td>${student.issue}</td>
+                            <td>${student.department.toUpperCase()}</td>
+                        </tr>`;
+                        tableBody.innerHTML += row;
+                    }
+                });
+            }
+
+            departmentFilter.addEventListener("change", function () {
+                renderTable(this.value);
+            });
+
+            renderTable("all");
+        });
+    </script>
+</body>
+</html>

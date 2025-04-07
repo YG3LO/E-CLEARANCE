@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../style.css"> <!-- Link to your existing CSS -->
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="pending_request.html">Pending Requests</a></li>
+                <li><a href="announcement.html">Announcement</a></li>
+                <li><a href="denied-requests.html">Denied Requests</a></li>
+                <li><a href="approved-requests.html">Approved Requests</a></li>
+                <li><a href="add-requirements.html">Add Requirements</a></li>
+                <li><a href="student-records.html">Student Records</a></li>
+                <li><a href="statistical-report.html" class="active">Statistical Report</a></li>
+                <li><a href="manage-accounts.html">Manage Accounts</a></li>
+                <li><a href="change-password.html">Change Password</a></li>
+                <li><a href="../index.html" class="logout">Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Statistical Reports</h1>
+            
+            <!-- Courses Completion Report -->
+            <div class="chart-container">
+                <h2>Clearance Completion by Course</h2>
+                <canvas id="completionChart"></canvas>
+            </div>
+            
+            <!-- Request Status Report -->
+            <div class="chart-container">
+                <h2>Request Status Report</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sample data for Courses Completion Report
+            const completionData = {
+                labels: ["BSIT", "BSCrim", "BSBA", "BSED", "BSHM"],
+                datasets: [{
+                    label: "Students Cleared",
+                    data: [50, 40, 60, 45, 30],
+                    backgroundColor: ["#4CAF50", "#2196F3", "#FF9800", "#9C27B0", "#F44336"]
+                }]
+            };
+
+            // Render Completion Chart
+            new Chart(document.getElementById("completionChart"), {
+                type: "bar",
+                data: completionData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // Sample data for Request Status Report
+            const statusData = {
+                labels: ["Pending", "Denied", "Approved"],
+                datasets: [{
+                    label: "Request Status",
+                    data: [20, 10, 70],
+                    backgroundColor: ["#FFC107", "#F44336", "#4CAF50"]
+                }]
+            };
+
+            // Render Status Chart
+            new Chart(document.getElementById("statusChart"), {
+                type: "bar",
+                data: statusData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

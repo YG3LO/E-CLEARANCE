@@ -1,0 +1,833 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+}
+
+/* Dark Overlay to Improve Readability */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Center the login form */
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background: #4b49ac;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background: #3734a9;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+p {
+    color: #666;
+    font-size: 14px;
+}
+
+.options {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #4a47a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #3734a9;
+}
+
+.register {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register a {
+    color: #4a47a3;
+    text-decoration: none;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Main Content */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+header h1 {
+    font-size: 28px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Status Cards */
+.status-cards {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.card {
+    flex: 1;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    min-width: 150px;
+}
+
+.pending { background: orange; }
+.denied { background: red; }
+.cleared { background: green; }
+
+/* Search Box */
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    padding-right: 20px;
+    gap: 10px;
+}
+
+.search-box {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 250px;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    border: none;
+    background: purple;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    white-space: nowrap;
+    width: auto;
+}
+
+/* Table */
+table {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: purple;
+    color: white;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+/* View Button */
+.view-btn {
+    background: purple;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background: #5a2d8a;
+}
+
+/* Fix Status Badge */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.pending-badge { background: orange; }
+.approved-badge { background: green; }
+.denied-badge { background: red; }
+
+/* Notification Container */
+.notification-container {
+    width: 300px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.notification-container h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#notification-list {
+    list-style: none;
+    padding: 0;
+}
+
+#notification-list li {
+    background: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+} 
+
+/* Announcement Section Styling */
+.announcement-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.announcement-container h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.announcement-textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    font-size: 16px;
+    color: #333;
+}
+
+.announcement-textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+.post-announcement-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.post-announcement-btn:hover {
+    background: #0056b3;
+}
+
+/* Notification List Styling */
+.notification-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.notification-container h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#notification-list {
+    list-style: none;
+    padding: 0;
+}
+
+#notification-list li {
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+    font-size: 16px;
+    color: #333;
+}
+
+
+/* Ensure "Notifications" text is white */
+h1 {
+    color: white;
+    text-align: center;
+}
+
+/* Centering and styling the announcement box */
+.announcement-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Expanding the announcement text area */
+#announcement-text {
+    width: 100%;
+    height: 120px; /* Adjusted height */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Prevent resizing */
+}
+
+/* Button styling */
+#post-announcement {
+    width: 100%;
+    background-color: #4A3AFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Recent Alerts section */
+.notification-container {   
+    position: absolute; /* Allows manual positioning */
+    top: 60%; /* Adjusts vertical placement above the announcement box */
+    left: 48%; /* Centers it horizontally */
+    transform: translate(-50%, -100%); /* Moves it above */
+    background: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style notification list */
+#notification-list {
+    list-style: none;
+    padding: 0;
+}
+
+#notification-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.delete-btn {
+    background-color: #4A3AFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Pending Requests */
+.pending-container {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pending-container h2 {
+    text-align: center;
+}
+
+/* Pending Request Table */
+.pending-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+}
+
+.pending-container th, 
+.pending-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.pending-container th {
+    background: purple;
+    color: white;
+}
+
+/* Pending Request View Button */
+.pending-container .view-btn {
+    background: purple;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pending-container .view-btn:hover {
+    background: #5a2d8a;
+}
+
+/* Status Badge for Pending Requests */
+.pending-container .status-badge {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.pending-container .pending-badge { background: orange; }
+.pending-container .approved-badge { background: green; }
+.pending-container .denied-badge { background: red; }
+
+/* Denied Requests */
+.denied-container {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.denied-container h2 {
+    text-align: center;
+    color: red;
+}
+
+/* Denied Request Table */
+.denied-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+}
+
+.denied-container th, 
+.denied-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.denied-container th {
+    background: red;
+    color: white;
+}
+
+/* Denied Request View Button */
+.denied-container .view-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.denied-container .view-btn:hover {
+    background: darkred;
+}
+
+/* Status Badge for Denied Requests */
+.denied-container .status-badge {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.denied-container .denied-badge { background: red; }
+
+/* Approved Requests Container */
+.approved-container {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.approved-container h2 {
+    text-align: center;
+}
+
+/* Approved Requests Table */
+.approved-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+}
+
+.approved-container th, 
+.approved-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.approved-container th {
+    background: green;
+    color: white;
+}
+
+/* Approved Request View Button */
+.approved-container .view-btn {
+    background: green;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.approved-container .view-btn:hover {
+    background: #2e7d32;
+}
+
+/* Status Badge for Approved Requests */
+.approved-container .status-badge {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.approved-container .approved-badge { background: green; }
+.approved-container .pending-badge { background: orange; }
+.approved-container .denied-badge { background: red; }
+
+     /* Form Container */
+     .form-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: auto;
+    }
+
+    /* Success Message */
+    .success-message {
+        display: none;
+        background: #d4edda;
+        color: #155724;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Labels */
+    label {
+        display: block;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    /* Inputs */
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Student ID field */
+    #student-id-field {
+        display: none;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .submit-btn:hover {
+        background: #218838;
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+    }
+    select, input {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+
+/* Main Content Styling - STUDENT RECORDS */
+.content {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.chart-container {
+    background: white;
+    padding: 20px;
+
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Search and Filter Section */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-dropdown select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Centered Container - MANAGE ACCOUNTS */
+.container {
+    flex: 1;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filters select,
+.filters input {
+    width: 48%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Table  */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background: blue;
+    color: white;
+}
+
+/* Buttons */
+.edit-btn, .password-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.edit-btn {
+    background: green;
+}
+
+.password-btn {
+    background: rgb(255, 0, 0);
+}
+
