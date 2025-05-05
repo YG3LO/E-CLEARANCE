@@ -1,94 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistical Report</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="../style.css"> <!-- Link to your existing CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statistical Report</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <div class="dashboard">
-        <aside class="sidebar">
-            <h2>Menu</h2>
-            <ul>
-                <li><a href="admin-dashboard.html">Dashboard</a></li>
-                <li><a href="pending_request.html">Pending Requests</a></li>
-                <li><a href="announcement.html">Announcement</a></li>
-                <li><a href="denied-requests.html">Denied Requests</a></li>
-                <li><a href="approved-requests.html">Approved Requests</a></li>
-                <li><a href="add-requirements.html">Add Requirements</a></li>
-                <li><a href="student-records.html">Student Records</a></li>
-                <li><a href="statistical-report.html" class="active">Statistical Report</a></li>
-                <li><a href="manage-accounts.html">Manage Accounts</a></li>
-                <li><a href="change-password.html">Change Password</a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
-            </ul>
-        </aside>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <img src="../images/loa.png" alt="App Logo" class="logo" />
+      <ul>
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="pending_request.html">Pending Requests</a></li>
+        <li><a href="announcement.html">Announcement</a></li>
+        <li><a href="denied-requests.html">Denied Requests</a></li>
+        <li><a href="approved-requests.html">Approved Requests</a></li>
+        <li><a href="audit-trail.html">Audit Trail</a></li>
+        <li><a href="student-records.html">Student Records</a></li>
+        <li><a href="statistical-report.html" class="active">Statistical Report</a></li>
+        <li><a href="manage-accounts.html">Manage Accounts</a></li>
+        <li><a href="change-password.html">Change Password</a></li>
+        <li><a href="../index.html" class="logout">Logout</a></li>
+      </ul>
+    </aside>
 
-        <main class="content">
-            <h1>Statistical Reports</h1>
-            
-            <!-- Courses Completion Report -->
-            <div class="chart-container">
-                <h2>Clearance Completion by Course</h2>
-                <canvas id="completionChart"></canvas>
-            </div>
-            
-            <!-- Request Status Report -->
-            <div class="chart-container">
-                <h2>Request Status Report</h2>
-                <canvas id="statusChart"></canvas>
-            </div>
-        </main>
-    </div>
+    <main class="content">
+      <h1>Statistical Reports</h1>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Sample data for Courses Completion Report
-            const completionData = {
-                labels: ["BSIT", "BSCrim", "BSBA", "BSED", "BSHM"],
-                datasets: [{
-                    label: "Students Cleared",
-                    data: [50, 40, 60, 45, 30],
-                    backgroundColor: ["#4CAF50", "#2196F3", "#FF9800", "#9C27B0", "#F44336"]
-                }]
-            };
+      <!-- Filter -->
+      <div class="chart-filter">
+        <label for="courseFilter">Select Course:</label>
+        <select id="courseFilter" onchange="updateChart()">
+          <option value="All">All</option>
+          <option value="BSIT">BSIT</option>
+          <option value="BSCrim">BSCrim</option>
+          <option value="BSBA">BSBA</option>
+          <option value="BSED">BSED</option>
+          <option value="BSHM">BSHM</option>
+        </select>
+      </div>
 
-            // Render Completion Chart
-            new Chart(document.getElementById("completionChart"), {
-                type: "bar",
-                data: completionData,
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
+      <!-- Status by Course Chart -->
+      <div class="chart-container">
+        <h2 id="chartTitle">Clearance Status Report</h2>
+        <canvas id="statusChart"></canvas>
+      </div>
+    </main>
+  </div>
 
-            // Sample data for Request Status Report
-            const statusData = {
-                labels: ["Pending", "Denied", "Approved"],
-                datasets: [{
-                    label: "Request Status",
-                    data: [20, 10, 70],
-                    backgroundColor: ["#FFC107", "#F44336", "#4CAF50"]
-                }]
-            };
+  <script>
+    const statusChartCanvas = document.getElementById("statusChart").getContext("2d");
 
-            // Render Status Chart
-            new Chart(document.getElementById("statusChart"), {
-                type: "bar",
-                data: statusData,
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-        });
-    </script>
+    const rawData = {
+      "BSIT": { approved: 40, pending: 8, denied: 2 },
+      "BSCrim": { approved: 30, pending: 5, denied: 5 },
+      "BSBA": { approved: 25, pending: 10, denied: 5 },
+      "BSED": { approved: 20, pending: 7, denied: 3 },
+      "BSHM": { approved: 15, pending: 10, denied: 5 }
+    };
+
+    let statusChart;
+
+    function updateChart() {
+      const course = document.getElementById("courseFilter").value;
+      let chartData, chartLabels = ["Approved", "Pending", "Denied"];
+
+      if (course === "All") {
+        const totals = { approved: 0, pending: 0, denied: 0 };
+        for (let key in rawData) {
+          totals.approved += rawData[key].approved;
+          totals.pending += rawData[key].pending;
+          totals.denied += rawData[key].denied;
+        }
+        chartData = [totals.approved, totals.pending, totals.denied];
+        document.getElementById("chartTitle").innerText = "Clearance Status Report (All Courses)";
+      } else {
+        const data = rawData[course];
+        chartData = [data.approved, data.pending, data.denied];
+        document.getElementById("chartTitle").innerText = `Clearance Status Report (${course})`;
+      }
+
+      if (statusChart) {
+        statusChart.destroy();
+      }
+
+      statusChart = new Chart(statusChartCanvas, {
+        type: "bar",
+        data: {
+          labels: chartLabels,
+          datasets: [{
+            label: "Number of Students",
+            data: chartData,
+            backgroundColor: ["#4CAF50", "#FFC107", "#F44336"]
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Initial chart load
+    window.onload = updateChart;
+  </script>
 </body>
 </html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Audit Trail</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="../images/loa.png" alt="App Logo" class="logo" />
+      <ul>
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="pending_request.html">Pending Requests</a></li>
+        <li><a href="announcement.html">Announcement</a></li>
+        <li><a href="denied-requests.html">Denied Requests</a></li>
+        <li><a href="approved-requests.html">Approved Requests</a></li>
+        <li><a href="audit-trail.html" class="active">Audit Trail</a></li>
+        <li><a href="student-records.html">Student Records</a></li>
+        <li><a href="statistical-report.html">Statistical Report</a></li>
+        <li><a href="manage-accounts.html">Manage Accounts</a></li>
+        <li><a href="change-password.html">Change Password</a></li>
+        <li><a href="../index.html" class="logout">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <header>
+        <h1>Audit Trail</h1>
+      </header>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>User Type</th>
+            <th>User Name</th>
+            <th>Login Time</th>
+            <th>Logout Time</th>
+          </tr>
+        </thead>
+        <tbody id="auditTrailTable">
+          <!-- Data inserted by JavaScript -->
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <script>
+    const auditData = [
+      {
+        type: "Admin",
+        name: "Alfredo Reyes",
+        login: "May 5, 2025 08:10 AM",
+        logout: "May 5, 2025 09:00 AM"
+      },
+      {
+        type: "Dean",
+        name: "Dr. Liza Cruz",
+        login: "May 5, 2025 09:30 AM",
+        logout: "May 5, 2025 10:15 AM"
+      },
+      {
+        type: "Student",
+        name: "Angelo Sta Ana",
+        login: "May 5, 2025 10:45 AM",
+        logout: "May 5, 2025 11:20 AM"
+      }
+    ];
+
+    const tableBody = document.getElementById('auditTrailTable');
+    auditData.forEach((entry, index) => {
+      const row = `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${entry.type}</td>
+          <td>${entry.name}</td>
+          <td>${entry.login}</td>
+          <td>${entry.logout}</td>
+        </tr>
+      `;
+      tableBody.innerHTML += row;
+    });
+  </script>
+</body>
+</html>

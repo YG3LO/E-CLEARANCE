@@ -1,87 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pending Requests</title>
-    <link rel="stylesheet" href="../style.css"> <!-- Link to external CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pending Requests</title>
+  <link rel="stylesheet" href="../style.css">
+
 </head>
 <body>
-    <div class="dashboard">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h2>Menu</h2>
-            <ul>
-                <li><a href="admin-dashboard.html">Dashboard</a></li>
-                <li><a href="pending_request.html" class="active">Pending Requests</a></li>
-                <li><a href="announcement.html">Announcement</a></li>
-                <li><a href="denied-requests.html">Denied Requests</a></li>
-                <li><a href="approved-requests.html">Approved Requests</a></li>
-                <li><a href="add-requirements.html">Add Requirements</a></li>
-                <li><a href="student-records.html">Student Records</a></li>
-                <li><a href="statistical-report.html">Statistical Report</a></li>
-                <li><a href="manage-accounts.html">Manage Accounts</a></li>
-                <li><a href="change-password.html">Change Password</a></li>
-                <li><a href="../index.html" class="logout">Logout</a></li>
-            </ul>
-        </aside>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="../images/loa.png" alt="App Logo" class="logo" />
+      <ul>
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="pending_request.html" class="active">Pending Requests</a></li>
+        <li><a href="announcement.html">Announcement</a></li>
+        <li><a href="denied-requests.html">Denied Requests</a></li>
+        <li><a href="approved-requests.html">Approved Requests</a></li>
+        <li><a href="audit-trail.html">Audit Trail</a></li>
+        <li><a href="student-records.html">Student Records</a></li>
+        <li><a href="statistical-report.html">Statistical Report</a></li>
+        <li><a href="manage-accounts.html">Manage Accounts</a></li>
+        <li><a href="change-password.html">Change Password</a></li>
+        <li><a href="../index.html" class="logout">Logout</a></li>
+      </ul>
+    </aside>
 
-        <!-- Main Content -->
-        <main class="content">
-            <header>
-                <h1>Pending Requests</h1>
-            </header>
+    <!-- Main Content -->
+    <main class="content">
+      <header>
+        <h1>Pending Requests</h1>
+      </header>
 
-            <!-- Status Cards -->
-            <div class="status-cards">
-                <div class="card pending">Pending: <span>9</span></div>
-                <div class="card denied">Denied: <span>2</span></div>
-                <div class="card cleared">Cleared: <span>1</span></div>
-            </div>
+      <!-- Status Cards -->
+      <div class="status-cards">
+        <div class="card pending">Pending: <span>9</span></div>
+        <div class="card denied">Denied: <span>2</span></div>
+        <div class="card cleared">Cleared: <span>1</span></div>
+      </div>
 
-            <!-- Search Box -->
-            <div class="search-container">
-                <input type="text" placeholder="Search here..." class="search-box">
-                <button class="search-btn">Search</button>
-            </div>
+      <!-- Search Box -->
+      <div class="search-container">
+        <input type="text" placeholder="Search here..." class="search-box">
+        <button class="search-btn">Search</button>
+      </div>
 
-            <!-- Pending Requests Table -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Student ID</th>
-                        <th>Complete Name</th>
-                        <th>Course</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>20220125</td>
-                        <td>Mesa, Julie Anne</td>
-                        <td>BEED</td>
-                        <td>December 13, 2022</td>
-                        <td><span class="status-badge pending-badge">⏳ Pending</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>20220136</td>
-                        <td>Labo, Arfenee</td>
-                        <td>BEED</td>
-                        <td>December 13, 2022</td>
-                        <td><span class="status-badge pending-badge">⏳ Pending</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </main>
-    </div>
+      <!-- Pending Requests Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Student ID</th>
+            <th>Complete Name</th>
+            <th>Course</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>20220125</td>
+            <td>Mesa, Julie Anne</td>
+            <td>BEED</td>
+            <td>December 13, 2022</td>
+            <td><span class="status-badge pending-badge">⏳ Pending</span></td>
+            <td>
+              <button class="action-btn" onclick="openModal('Mesa, Julie Anne')">Need Requirements</button>
+              <button class="action-btn" onclick="viewStudent('Mesa, Julie Anne')">View</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>20220136</td>
+            <td>Labo, Arfenee</td>
+            <td>BEED</td>
+            <td>December 13, 2022</td>
+            <td><span class="status-badge pending-badge">⏳ Pending</span></td>
+            <td>
+              <button class="action-btn" onclick="openModal('Labo, Arfenee')">Need Requirements</button>
+              <button class="action-btn" onclick="viewStudent('Labo, Arfenee')">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
 
-    <script src="../script.js"></script> <!-- Link to external JS -->
+  <!-- Chat Modal -->
+  <div class="overlay" id="overlay"></div>
+  <div class="modal" id="modal">
+    <h3>Message to <span id="studentName"></span></h3>
+
+    <!-- Chat history -->
+    <div id="chatHistory" class="chat-history"></div>
+
+    <!-- Messaging form -->
+    <form id="messageForm" onsubmit="handleSendMessage(event)">
+      <textarea id="messageText" placeholder="Enter your message..." rows="2"></textarea>
+      <input type="file" id="attachmentInput" accept="image/*">
+      <div style="margin-top: 10px;">
+        <button type="submit">Send</button>
+        <button type="button" onclick="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    let selectedStudent = '';
+    const messageHistory = {};
+
+    function openModal(name) {
+      selectedStudent = name;
+      document.getElementById('studentName').innerText = name;
+      document.getElementById('messageText').value = '';
+      document.getElementById('attachmentInput').value = '';
+
+      const chat = messageHistory[name] || [];
+      const chatHistory = document.getElementById('chatHistory');
+      chatHistory.innerHTML = chat.length ? chat.join('') : '<p style="color:gray;">No messages yet.</p>';
+
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function handleSendMessage(event) {
+      event.preventDefault();
+      const message = document.getElementById('messageText').value.trim();
+      const fileInput = document.getElementById('attachmentInput');
+      const chatHistory = document.getElementById('chatHistory');
+
+      let chatContent = '';
+
+      if (message) {
+        chatContent += `<div class="chat-bubble sent">${message}</div>`;
+      }
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const fileURL = URL.createObjectURL(file);
+        chatContent += `<div class="chat-bubble sent"><img src="${fileURL}" class="chat-img"></div>`;
+      }
+
+      if (!chatContent) {
+        alert("Please enter a message or attach a file.");
+        return;
+      }
+
+      if (!messageHistory[selectedStudent]) {
+        messageHistory[selectedStudent] = [];
+      }
+
+      messageHistory[selectedStudent].push(chatContent);
+
+      chatHistory.innerHTML = messageHistory[selectedStudent].join('');
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+
+      document.getElementById('messageText').value = '';
+      document.getElementById('attachmentInput').value = '';
+    }
+
+    function viewStudent(name) {
+      alert(`Viewing details for ${name}.`);
+    }
+  </script>
 </body>
 </html>
